@@ -6,13 +6,16 @@
 #include "BubbleSort.hpp"
 #include <SFML/Graphics.hpp>
 
+// TODO: add functions for text creation and updating
+
+sf::Font initFont();
 sf::RenderWindow createWindow();
 sf::RectangleShape initRectangle(float sizeX, float sizeY, float posX, float posY);
 int getIntInput(std::string prompt, int min, int max);
 void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u windowSize, int currentX, int width);
 
 int main()
-{	
+{
 	// 2 arrays. 1 is used to hold the values to be sorted.
 	// the 2nd is for the rectangle objects that need to be drawn to the window.
 	int input;
@@ -38,8 +41,20 @@ int main()
 		currentX += width;
 		rectangles[i] = rect;
 	}
+	
 	sf::Clock clock;
 	window.setVisible(true);
+	
+	sf::Font font = initFont();
+	sf::Text numSwaps(font);
+	sf::Text numComparions(font);
+	numSwaps.setString("Number of swaps: 0");
+	numComparions.setString("Number of comparisons: 0");
+	numSwaps.setCharacterSize(16);
+	numSwaps.setPosition({ 0, 0 });
+	numComparions.setCharacterSize(16);
+	numComparions.setPosition({ 0, 16 });
+
 	bool sorting = true;
 	while (window.isOpen()) {
 		while (const std::optional event = window.pollEvent()) {
@@ -52,6 +67,7 @@ int main()
 		if (sorting && clock.getElapsedTime().asSeconds() >= 0.1) {
 			clock.restart();
 			sorter.step();
+
 			currentX = 0;
 			for (int i = 0; i < numElements; i++) {
 				updateRectangle(rectangles[i], elements[i], window.getSize(), currentX, width);
@@ -68,6 +84,15 @@ int main()
 		for (int i = 0; i < numElements; i++) {
 			window.draw(rectangles[i]);
 		}
+
+		int newSwaps = sorter.getNumSwaps();
+		int newComparisons = sorter.getNumComparions();
+
+		numSwaps.setString("Number of swaps: " + std::to_string(newSwaps));
+		numComparions.setString("number of comparisons: " + std::to_string(newComparisons));
+
+		window.draw(numSwaps);
+		window.draw(numComparions);
 		
 		window.display();
 	}
@@ -85,6 +110,12 @@ void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u wind
 		static_cast<float>(currentX),
 		static_cast<float>(windowSize.y - height)
 		});
+}
+
+sf::Font initFont() {
+	sf::Font font;
+	font.openFromFile("assets/Akira.otf");
+	return font;
 }
 
 sf::RectangleShape initRectangle(float sizeX, float sizeY, float posX, float posY) {
