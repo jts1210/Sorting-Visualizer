@@ -25,19 +25,13 @@ int BubbleSort::getNumComparions() {
     return numComparisons;
 }
 
-int BubbleSort::getI() {
-	return i;
-}
-
-int BubbleSort::getJ() {
-	return j;
-}
-
 bool BubbleSort::isFinished() {
     return finished;
 }
 
 void BubbleSort::step() {
+    if (finished) return;
+    
     if (j >= size - i - 1) {
         j = 0;
         i++;

@@ -6,9 +6,10 @@
 #include "BubbleSort.hpp"
 #include <SFML/Graphics.hpp>
 
-// TODO: add functions for text creation and updating
+#define FONT_SIZE 16
 
 sf::Font initFont();
+sf::Text createText(std::string prompt, int charSize, int posX, int posY, const sf::Font& font);
 sf::RenderWindow createWindow();
 sf::RectangleShape initRectangle(float sizeX, float sizeY, float posX, float posY);
 int getIntInput(std::string prompt, int min, int max);
@@ -46,14 +47,8 @@ int main()
 	window.setVisible(true);
 	
 	sf::Font font = initFont();
-	sf::Text numSwaps(font);
-	sf::Text numComparions(font);
-	numSwaps.setString("Number of swaps: 0");
-	numComparions.setString("Number of comparisons: 0");
-	numSwaps.setCharacterSize(16);
-	numSwaps.setPosition({ 0, 0 });
-	numComparions.setCharacterSize(16);
-	numComparions.setPosition({ 0, 16 });
+	sf::Text numSwaps = createText("Number of swaps: 0", FONT_SIZE, 0, 0, font);
+	sf::Text numComparisons = createText("Number of comparisons: 0", FONT_SIZE, 0, FONT_SIZE, font);
 
 	bool sorting = true;
 	while (window.isOpen()) {
@@ -89,10 +84,10 @@ int main()
 		int newComparisons = sorter.getNumComparions();
 
 		numSwaps.setString("Number of swaps: " + std::to_string(newSwaps));
-		numComparions.setString("number of comparisons: " + std::to_string(newComparisons));
+		numComparisons.setString("number of comparisons: " + std::to_string(newComparisons));
 
 		window.draw(numSwaps);
-		window.draw(numComparions);
+		window.draw(numComparisons);
 		
 		window.display();
 	}
@@ -110,6 +105,14 @@ void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u wind
 		static_cast<float>(currentX),
 		static_cast<float>(windowSize.y - height)
 		});
+}
+
+sf::Text createText(std::string prompt, int charSize, int posX, int posY, const sf::Font& font) {
+	sf::Text text(font);
+	text.setString(prompt);
+	text.setCharacterSize(charSize);
+	text.setPosition({ static_cast<float>(posX), static_cast<float>(posY) });
+	return text;
 }
 
 sf::Font initFont() {

@@ -4,8 +4,6 @@ class BubbleSort {
 public:
 	BubbleSort(int size);
 	void step();
-	int getI();
-	int getJ();
 	const int* getArr();
 	bool isFinished();
 	int getNumSwaps();
