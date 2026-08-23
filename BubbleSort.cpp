@@ -1,32 +1,11 @@
+#include "Algorithm.hpp"
 #include "BubbleSort.hpp"
 #include "RandomArray.hpp"
-#include <random>
+#include <utility>
 
-BubbleSort::BubbleSort(int size) {
-    this->size = size;
-    arr = new int[size];
-    numSwaps = 0;
-    numComparisons = 0;
+BubbleSort::BubbleSort(int size) : Algorithm(size) {
 	i = 0;
-	j = 0;
-    finished = false;
-    arr = RandomArray::generateArray(size);
-}
-
-const int* BubbleSort::getArr() {
-    return arr;
-}
-
-int BubbleSort::getNumSwaps() {
-    return numSwaps;
-}
-
-int BubbleSort::getNumComparions() {
-    return numComparisons;
-}
-
-bool BubbleSort::isFinished() {
-    return finished;
+    j = 0;
 }
 
 void BubbleSort::step() {

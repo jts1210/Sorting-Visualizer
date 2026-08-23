@@ -4,6 +4,7 @@
 #include <vector>
 #include <limits>
 #include "BubbleSort.hpp"
+#include "Algorithm.hpp"
 #include <SFML/Graphics.hpp>
 
 #define FONT_SIZE 16
@@ -23,9 +24,9 @@ int main()
 	input = getIntInput("Enter the number of elements you'd like to sort (1-10000): ", 1, 10000);
 
 	const int numElements = input;
-	BubbleSort sorter(numElements);
+	Algorithm* sorter = new BubbleSort(numElements);
 
-	const int* elements = sorter.getArr();
+	const int* elements = sorter->getArr();
 	std::vector<sf::RectangleShape> rectangles(numElements);
 
 	// prematurely create window and make it invisible to access window size for calculations.
@@ -61,17 +62,17 @@ int main()
 		
 		if (sorting && clock.getElapsedTime().asSeconds() >= 0.1) {
 			clock.restart();
-			sorter.step();
+			sorter->step();
 
 			currentX = 0;
 			for (int i = 0; i < numElements; i++) {
 				updateRectangle(rectangles[i], elements[i], window.getSize(), currentX, width);
 				currentX += width;
 			}
-			if (sorter.isFinished()) {
+			if (sorter->isFinished()) {
 				sorting = false;
-				int numSwaps = sorter.getNumSwaps();
-				int numComparisons = sorter.getNumComparions();
+				int numSwaps = sorter->getNumSwaps();
+				int numComparisons = sorter->getNumComparisons();
 				std::cout << "Sorting has finished.\nNumber of swaps: " << numSwaps << "\nNumber of comparisons: " << numComparisons;
 			}
 		}
@@ -80,8 +81,8 @@ int main()
 			window.draw(rectangles[i]);
 		}
 
-		int newSwaps = sorter.getNumSwaps();
-		int newComparisons = sorter.getNumComparions();
+		int newSwaps = sorter->getNumSwaps();
+		int newComparisons = sorter->getNumComparisons();
 
 		numSwaps.setString("Number of swaps: " + std::to_string(newSwaps));
 		numComparisons.setString("number of comparisons: " + std::to_string(newComparisons));

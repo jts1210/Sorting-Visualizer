@@ -1,19 +1,12 @@
 #pragma once
 
-class BubbleSort {
+#include "Algorithm.hpp"
+
+class BubbleSort : public Algorithm {
 public:
 	BubbleSort(int size);
-	void step();
-	const int* getArr();
-	bool isFinished();
-	int getNumSwaps();
-	int getNumComparions();
+	void step() override;
 private:
-	int numSwaps;
-	int numComparisons;
 	int i;
 	int j;
-	int size;
-	int* arr;
-	bool finished;
 };

@@ -152,6 +152,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm.cpp" />
     <ClCompile Include="BubbleSort.cpp" />
     <ClCompile Include="main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xxjts\Downloads\SFML-3.1.0\include</AdditionalIncludeDirectories>
@@ -160,6 +161,7 @@
     <ClCompile Include="RandomArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algorithm.hpp" />
     <ClInclude Include="BubbleSort.hpp" />
     <ClInclude Include="RandomArray.hpp" />
     <ClInclude Include="resource.h" />
