@@ -1,13 +1,15 @@
 #include "Algorithm.hpp"
 #include "RandomArray.hpp"
+#include <string>
 
-Algorithm::Algorithm(int size) {
+Algorithm::Algorithm(int size, std::string timeComplexity) {
 	this->size = size;
 	arr = RandomArray::generateArray(size);
 
 	numSwaps = 0;
 	numComparisons = 0;
 	finished = false;
+	this->timeComplexity = timeComplexity;
 }
 
 const int* Algorithm::getArr() {
@@ -24,4 +26,8 @@ int Algorithm::getNumSwaps() {
 
 int Algorithm::getNumComparisons() {
 	return numComparisons;
+}
+
+std::string Algorithm::getTimeComplexity() {
+	return timeComplexity;
 }

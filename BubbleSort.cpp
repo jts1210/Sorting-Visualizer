@@ -2,8 +2,9 @@
 #include "BubbleSort.hpp"
 #include "RandomArray.hpp"
 #include <utility>
+#include <string>
 
-BubbleSort::BubbleSort(int size) : Algorithm(size) {
+BubbleSort::BubbleSort(int size, std::string timeComplexity) : Algorithm(size, timeComplexity) {
 	i = 0;
     j = 0;
 }

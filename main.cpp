@@ -15,16 +15,25 @@ sf::RenderWindow createWindow();
 sf::RectangleShape initRectangle(float sizeX, float sizeY, float posX, float posY);
 int getIntInput(std::string prompt, int min, int max);
 void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u windowSize, int currentX, int width);
+Algorithm* makeSorter(int alg, int size);
 
 int main()
 {
 	// 2 arrays. 1 is used to hold the values to be sorted.
 	// the 2nd is for the rectangle objects that need to be drawn to the window.
-	int input;
-	input = getIntInput("Enter the number of elements you'd like to sort (1-10000): ", 1, 10000);
+	int input1;
+	int input2;
+	input1 = getIntInput("Select the algorithm you'd like to use:\n1. Bubble sort\n", 1, 1);
 
-	const int numElements = input;
-	Algorithm* sorter = new BubbleSort(numElements);
+	input2 = getIntInput("Enter the number of elements you'd like to sort (1-10000): ", 1, 10000);
+
+	const int numElements = input2;
+	Algorithm* sorter = makeSorter(input1, input2);
+
+	if (!sorter) {
+		std::cout << "Failed to make sorter. Terminating program.";
+		return 1;
+	}
 
 	const int* elements = sorter->getArr();
 	std::vector<sf::RectangleShape> rectangles(numElements);
@@ -106,6 +115,17 @@ void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u wind
 		static_cast<float>(currentX),
 		static_cast<float>(windowSize.y - height)
 		});
+}
+
+Algorithm* makeSorter(int alg, int size) {
+	Algorithm* sorter;
+	switch (alg) {
+	case 1:
+		sorter = new BubbleSort(size, "O(n^2)");
+		return sorter;
+	default:
+		return nullptr;
+	}
 }
 
 sf::Text createText(std::string prompt, int charSize, int posX, int posY, const sf::Font& font) {
