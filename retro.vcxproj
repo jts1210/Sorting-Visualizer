@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="Algorithm.hpp" />
     <ClInclude Include="BubbleSort.hpp" />
+    <ClInclude Include="MergeSort.hpp" />
     <ClInclude Include="RandomArray.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

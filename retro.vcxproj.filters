@@ -41,6 +41,9 @@
     <ClInclude Include="Algorithm.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MergeSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualizer.rc">
