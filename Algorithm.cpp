@@ -12,7 +12,7 @@ Algorithm::Algorithm(int size, std::string timeComplexity) {
 	this->timeComplexity = timeComplexity;
 }
 
-const int* Algorithm::getArr() {
+const std::vector<int>& Algorithm::getArr() {
 	return arr;
 }
 

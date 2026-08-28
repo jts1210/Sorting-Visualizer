@@ -1,6 +1,8 @@
 #pragma once
 
+#include <vector>
+
 class RandomArray {
 public:
-	static int* generateArray(int numElements);
+	static std::vector<int> generateArray(int numElements);
 };

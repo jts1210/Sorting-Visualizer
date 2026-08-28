@@ -3,6 +3,7 @@
 #include "RandomArray.hpp"
 #include <utility>
 #include <string>
+#include <vector>
 
 BubbleSort::BubbleSort(int size, std::string timeComplexity) : Algorithm(size, timeComplexity) {
 	i = 0;

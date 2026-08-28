@@ -35,7 +35,7 @@ int main()
 		return 1;
 	}
 
-	const int* elements = sorter->getArr();
+	const std ::vector<int>& elements = sorter->getArr();
 	std::vector<sf::RectangleShape> rectangles(numElements);
 
 	// prematurely create window and make it invisible to access window size for calculations.
@@ -56,7 +56,14 @@ int main()
 	sf::Clock clock;
 	window.setVisible(true);
 	
-	sf::Font font = initFont();
+	sf::Font font;
+	try {
+		font = initFont();
+	}
+	catch (const std::exception& e) {
+		std::cout << e.what() << "\n";
+		return 1;
+	}
 	sf::Text numSwaps = createText("Number of swaps: 0", FONT_SIZE, 0, 0, font);
 	sf::Text numComparisons = createText("Number of comparisons: 0", FONT_SIZE, 0, FONT_SIZE, font);
 
@@ -138,7 +145,9 @@ sf::Text createText(std::string prompt, int charSize, int posX, int posY, const 
 
 sf::Font initFont() {
 	sf::Font font;
-	font.openFromFile("assets/Akira.otf");
+	if (!font.openFromFile("assets/Akira.otf")) {
+		throw std::runtime_error("FAILED TO LOAD FONT, TERMINATING PROGRAM.");
+	}
 	return font;
 }
 

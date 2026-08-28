@@ -1,12 +1,13 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 class Algorithm {
 public:
 	Algorithm(int size, std::string timeComplexity);
 	virtual void step() = 0;
-	virtual const int* getArr();
+	virtual const std::vector<int>& getArr();
 	virtual bool isFinished();
 	virtual int getNumSwaps();
 	virtual int getNumComparisons();
@@ -15,7 +16,7 @@ protected:
 	int numSwaps;
 	int numComparisons;
 	int size;
-	int* arr;
+	std::vector<int> arr;
 	bool finished;
 	std::string timeComplexity;
 };
