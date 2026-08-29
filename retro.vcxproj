@@ -152,24 +152,21 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Algorithm.cpp" />
-    <ClCompile Include="BubbleSort.cpp" />
-    <ClCompile Include="main.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\xxjts\Downloads\SFML-3.1.0\include</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\xxjts\Downloads\SFML-3.1.0\include</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="MergeSort.cpp" />
-    <ClCompile Include="RandomArray.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Algorithm.hpp" />
-    <ClInclude Include="BubbleSort.hpp" />
-    <ClInclude Include="MergeSort.hpp" />
-    <ClInclude Include="RandomArray.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\Algorithm.hpp" />
+    <ClInclude Include="src\BubbleSort.hpp" />
+    <ClInclude Include="src\MergeSort.hpp" />
+    <ClInclude Include="src\RandomArray.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualizer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Algorithm.cpp" />
+    <ClCompile Include="src\BubbleSort.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MergeSort.cpp" />
+    <ClCompile Include="src\RandomArray.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

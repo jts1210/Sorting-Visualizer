@@ -5,55 +5,52 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{80898404-a353-42a0-9cdc-c7fc2e6da48e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Header Files">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="src\Source Files">
+    <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>src\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BubbleSort.cpp">
-      <Filter>src\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RandomArray.cpp">
-      <Filter>src\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Algorithm.cpp">
-      <Filter>src\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MergeSort.cpp">
-      <Filter>src\Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BubbleSort.hpp">
-      <Filter>src\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomArray.hpp">
-      <Filter>src\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>src\Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Algorithm.hpp">
-      <Filter>src\Header Files</Filter>
+    <ClInclude Include="src\Algorithm.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MergeSort.hpp">
-      <Filter>src\Header Files</Filter>
+    <ClInclude Include="src\BubbleSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MergeSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RandomArray.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualizer.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Algorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BubbleSort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MergeSort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RandomArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
