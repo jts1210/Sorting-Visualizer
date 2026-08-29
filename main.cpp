@@ -5,6 +5,7 @@
 #include <limits>
 #include "BubbleSort.hpp"
 #include "Algorithm.hpp"
+#include "MergeSort.hpp"
 #include <SFML/Graphics.hpp>
 
 #define FONT_SIZE 16
@@ -23,7 +24,7 @@ int main()
 	// the 2nd is for the rectangle objects that need to be drawn to the window.
 	int input1;
 	int input2;
-	input1 = getIntInput("Select the algorithm you'd like to use:\n1. Bubble sort\n", 1, 1);
+	input1 = getIntInput("Select the algorithm you'd like to use:\n1. Bubble sort\n2. Merge sort\n", 1, 2);
 
 	input2 = getIntInput("Enter the number of elements you'd like to sort (1-10000): ", 1, 10000);
 
@@ -129,6 +130,9 @@ Algorithm* makeSorter(int alg, int size) {
 	switch (alg) {
 	case 1:
 		sorter = new BubbleSort(size, "O(n^2)");
+		return sorter;
+	case 2:
+		sorter = new MergeSort(size, "O(nlogn)");
 		return sorter;
 	default:
 		return nullptr;
