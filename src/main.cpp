@@ -10,18 +10,18 @@
 
 #define FONT_SIZE 16
 
+// TODO: update merge sort iteration to be 1 swap per step
+
 sf::Font initFont();
 sf::Text createText(std::string prompt, int charSize, int posX, int posY, const sf::Font& font);
 sf::RenderWindow createWindow();
 sf::RectangleShape initRectangle(float sizeX, float sizeY, float posX, float posY);
 int getIntInput(std::string prompt, int min, int max);
-void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u windowSize, int currentX, int width);
+void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u windowSize, float currentX, float width);
 Algorithm* makeSorter(int alg, int size);
 
 int main()
 {
-	// 2 arrays. 1 is used to hold the values to be sorted.
-	// the 2nd is for the rectangle objects that need to be drawn to the window.
 	int input1;
 	int input2;
 	input1 = getIntInput("Select the algorithm you'd like to use:\n1. Bubble sort\n2. Merge sort\n", 1, 2);
@@ -42,15 +42,14 @@ int main()
 	// prematurely create window and make it invisible to access window size for calculations.
 	sf::RenderWindow window = createWindow();
 	
-	int currentX = 0;
-	int width = window.getSize().x / numElements;
+	float windowWidthF = static_cast<float>(window.getSize().x);
+	float width = windowWidthF / numElements;
 
 	// populates rectangle array.
 	for (int i = 0; i < numElements; i++) {
 		float height = (elements[i] / 100.0f) * window.getSize().y; // scales the values so the graph is more interesting to look at
-		
-		sf::RectangleShape rect = initRectangle(static_cast<float>(width), height, static_cast<float>(currentX), static_cast<float>(window.getSize().y - height));
-		currentX += width;
+		float currentX = width * i;
+		sf::RectangleShape rect = initRectangle(width, height, currentX, static_cast<float>(window.getSize().y - height));
 		rectangles[i] = rect;
 	}
 	
@@ -68,6 +67,9 @@ int main()
 	sf::Text numSwaps = createText("Number of swaps: 0", FONT_SIZE, 0, 0, font);
 	sf::Text numComparisons = createText("Number of comparisons: 0", FONT_SIZE, 0, FONT_SIZE, font);
 
+	// will have an actual use later
+	int operationsPerUpdate = 1;
+
 	bool sorting = true;
 	while (window.isOpen()) {
 		while (const std::optional event = window.pollEvent()) {
@@ -79,12 +81,15 @@ int main()
 		
 		if (sorting && clock.getElapsedTime().asSeconds() >= 0.1) {
 			clock.restart();
-			sorter->step();
+			
+			for (int i = 0; i < operationsPerUpdate; i++) {
+				sorter->step();
+			}
 
-			currentX = 0;
+			
 			for (int i = 0; i < numElements; i++) {
+				float currentX = i * width;
 				updateRectangle(rectangles[i], elements[i], window.getSize(), currentX, width);
-				currentX += width;
 			}
 			if (sorter->isFinished()) {
 				sorting = false;
@@ -113,14 +118,14 @@ int main()
 	return 1;
 }
 
-void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u windowSize, int currentX, int width) {
+void updateRectangle(sf::RectangleShape& rectangle, int value, sf::Vector2u windowSize, float currentX, float width) {
 	float height = (value / 100.0f) * windowSize.y;
 	rectangle.setSize({
-		static_cast<float>(width),
+		width,
 		height
 		});
 	rectangle.setPosition({
-		static_cast<float>(currentX),
+		currentX,
 		static_cast<float>(windowSize.y - height)
 		});
 }
