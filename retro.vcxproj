@@ -155,6 +155,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\Algorithm.hpp" />
     <ClInclude Include="src\BubbleSort.hpp" />
+    <ClInclude Include="src\InsertionSort.hpp" />
     <ClInclude Include="src\MergeSort.hpp" />
     <ClInclude Include="src\RandomArray.hpp" />
   </ItemGroup>
@@ -164,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="src\Algorithm.cpp" />
     <ClCompile Include="src\BubbleSort.cpp" />
+    <ClCompile Include="src\InsertionSort.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MergeSort.cpp" />
     <ClCompile Include="src\RandomArray.cpp" />

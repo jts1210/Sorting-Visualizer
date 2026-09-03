@@ -30,6 +30,9 @@
     <ClInclude Include="src\RandomArray.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\InsertionSort.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="visualizer.rc">
@@ -50,6 +53,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\RandomArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InsertionSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

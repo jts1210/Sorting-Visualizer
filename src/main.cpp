@@ -5,6 +5,7 @@
 #include <limits>
 #include "BubbleSort.hpp"
 #include "Algorithm.hpp"
+#include "InsertionSort.hpp"
 #include "MergeSort.hpp"
 #include <SFML/Graphics.hpp>
 
@@ -24,7 +25,7 @@ int main()
 {
 	int input1;
 	int input2;
-	input1 = getIntInput("Select the algorithm you'd like to use:\n1. Bubble sort\n2. Merge sort\n", 1, 2);
+	input1 = getIntInput("Select the algorithm you'd like to use:\n1. Bubble sort\n2. Merge sort\n3. Insertion sort\n", 1, 3);
 
 	input2 = getIntInput("Enter the number of elements you'd like to sort (1-10000): ", 1, 10000);
 
@@ -64,8 +65,9 @@ int main()
 		std::cout << e.what() << "\n";
 		return 1;
 	}
-	sf::Text numSwaps = createText("Number of swaps: 0", FONT_SIZE, 0, 0, font);
-	sf::Text numComparisons = createText("Number of comparisons: 0", FONT_SIZE, 0, FONT_SIZE, font);
+	sf::Text complexity = createText("Time Complexity: " + sorter->getTimeComplexity(), FONT_SIZE, 0, 0, font);
+	sf::Text numSwaps = createText("Number of swaps: 0", FONT_SIZE, 0, FONT_SIZE, font);
+	sf::Text numComparisons = createText("Number of comparisons: 0", FONT_SIZE, 0, FONT_SIZE * 2, font);
 
 	// will have an actual use later
 	int operationsPerUpdate = 1;
@@ -109,6 +111,7 @@ int main()
 		numSwaps.setString("Number of swaps: " + std::to_string(newSwaps));
 		numComparisons.setString("number of comparisons: " + std::to_string(newComparisons));
 
+		window.draw(complexity);
 		window.draw(numSwaps);
 		window.draw(numComparisons);
 		
@@ -134,10 +137,13 @@ Algorithm* makeSorter(int alg, int size) {
 	Algorithm* sorter;
 	switch (alg) {
 	case 1:
-		sorter = new BubbleSort(size, "O(n^2)");
+		sorter = new BubbleSort(size, "O(n**2)");
 		return sorter;
 	case 2:
 		sorter = new MergeSort(size, "O(nlogn)");
+		return sorter;
+	case 3:
+		sorter = new InsertionSort(size, "O(n**2)");
 		return sorter;
 	default:
 		return nullptr;
@@ -149,6 +155,8 @@ sf::Text createText(std::string prompt, int charSize, int posX, int posY, const 
 	text.setString(prompt);
 	text.setCharacterSize(charSize);
 	text.setPosition({ static_cast<float>(posX), static_cast<float>(posY) });
+	sf::Color color(22, 140, 255);
+	text.setFillColor(color);
 	return text;
 }
 
